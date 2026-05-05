@@ -1,44 +1,65 @@
 import {students} from "./studentdata.js"
 
+//THESE ARE GLOBAL VARIABLES AND CAN BE USED ANYWHERE IN THE PROGRAMM
 const input = document.getElementById("input")
 const btn = document.getElementById("btn")
 const result = document.getElementById("result")
 const remark = document.getElementById("remark")
-
-btn.addEventListener("click", ()=>{
-
+const p = document.createElement("p")
+const h1 = document.createElement("h1")
 let cuttOffMark = 80
 
-const getNameValue = input.value.trim().toLowerCase()
+
+//ANY VARIABLE BELOW THE BTN FUNCTION IS A LOCAL VARIABLE, ONLY USED WITHIN THE FUNCTION
+btn.addEventListener("click", ()=>{
+const getPhoneValue = input.value.trim()
 
 result.innerHTML= ""
+remark.innerHTML= ""
 
 let found = false
 
-students.forEach(student =>{
-if(student.name.toLowerCase() === getNameValue){
-const p = document.createElement("p")
-const h1 = document.createElement("h1")
-p.textContent= `Your Score Is: ${student.score}`
-h1.textContent= `${student.name}, CONGRATULATIONS, you made it.`
+const student = students.find(
+s => s.phone === getPhoneValue
+)
+
+
+if(!student){
+p.textContent= `Student not found`
+h1.textContent= "Please use your phone number to check your score."
 result.appendChild(p)
 remark.appendChild(h1)
 found = true
-// }else if(student.score >= cuttOffMark){
-//     const p = document.createElement("p")
-//     p.textContent= `${student.name}, CONGRATULATION, you made it.`
-//     result.appendChild(p)
-//     found = true
 }
 
-})
-
-if(!found){
-    const p = document.createElement("p")
-    p.textContent="Student not found"
+if(student.score >= cuttOffMark){
+    p.textContent= `${student.name}, your score is ${student.score}`
+    h1.textContent= "CONGRATULATIONS, you made it."
     result.appendChild(p)
+    remark.appendChild(h1)
+}else{
+    p.textContent= `${student.name}, your score is ${student.score}`
+    h1.textContent= "SORRY, try next cohort."
+    result.appendChild(p)
+    remark.appendChild(h1)
 }
 })
+input.addEventListener("focus", ()=>{
+    if(!input.value !== ""){
+        input.value =""
+        p.textContent= ""
+        h1.textContent= ""
+    }
+})
+
+
+
+
+
+// if(!found){
+//     p.textContent="Student not found"
+//     result.appendChild(p)
+// }
 
 
 
