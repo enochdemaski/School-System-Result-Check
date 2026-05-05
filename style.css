@@ -1,0 +1,46 @@
+:root{
+    --primary: #252525;
+    --secondary: #ffffff;
+}
+
+body{
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.head{
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.container{
+    background-color: var(--secondary);
+    color: var(--primary);
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.input{
+    width: 50%;
+    padding: 5px;
+    outline: none;
+    border-style: none;
+    font-size: 20px;
+    border-bottom: 1px solid var(--primary);
+}
+
+.btn{
+    margin-left: 10%;
+    text-transform: uppercase;
+    padding: 5px;
+    width: 25%;
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 10px;
+}
+
+.remark{
+    font-size: 7px;
+}
